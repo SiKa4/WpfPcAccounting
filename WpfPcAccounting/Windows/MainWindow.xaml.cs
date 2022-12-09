@@ -28,13 +28,13 @@ namespace WpfPcAccounting
             InitializeComponent();
             MainAutiFrame.NavigationService.Navigate(new ListAddedPC());
             ComboFindKode.ItemsSource = DBConnection.DB.Barcode.ToList();
-
         }
 
         private void BtnAddNewPC_Click(object sender, RoutedEventArgs e)
         {
             DeleteAndAddPCWindow win = new DeleteAndAddPCWindow(false);
             win.ShowDialog();
+            MainAutiFrame.NavigationService.Navigate(new ListAddedPC());
         }
     }
 }

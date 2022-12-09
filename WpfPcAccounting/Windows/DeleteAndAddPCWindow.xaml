@@ -37,7 +37,7 @@
 
         <StackPanel Grid.Row="1" Grid.Column="1">
             <ComboBox ItemsSource="{Binding Path=Name_type}" DisplayMemberPath="Name_type" SelectedValuePath="Name_type" 
-                      SelectedValue="{Binding Path=Name_type}" Name="ComboBoxTypePC" Width="200" 
+                      Name="ComboBoxTypePC" Width="200" 
                       FontFamily="Bahnschrift Light" FontSize="15" IsEditable="True" HorizontalAlignment="Left" Margin="0,10,0,0" />
         </StackPanel>
 
@@ -55,11 +55,11 @@
 
         <StackPanel Grid.Row="2" Grid.Column="1">
             <ComboBox ItemsSource="{Binding Path=Serial_name}" DisplayMemberPath="Serial_name" SelectedValuePath="Serial_name" 
-                      SelectedValue="{Binding Path=Serial_name}" Name="ComboBoxRAM" Width="236" 
+                      Name="ComboBoxRAM" Width="236" 
                       FontFamily="Bahnschrift Light" FontSize="12" Height="24" IsEditable="True" HorizontalAlignment="Left" Margin="0,10,0,0" />
 
             <ComboBox ItemsSource="{Binding Path=Serial_name}" DisplayMemberPath="Serial_name" SelectedValuePath="Serial_name" 
-                      SelectedValue="{Binding Path=Serial_name}" Name="ComboBoxGPU" Width="236" 
+                      Name="ComboBoxGPU" Width="236" 
                       FontFamily="Bahnschrift Light" FontSize="12" Height="24" IsEditable="True" HorizontalAlignment="Left" Margin="0,18,0,0" />
         </StackPanel>
 
@@ -92,7 +92,7 @@
         <StackPanel Grid.Row="3" Grid.Column="4">
             <StackPanel Orientation="Horizontal">
                 <ComboBox ItemsSource="{Binding Path=Serial_name}" DisplayMemberPath="Serial_name" SelectedValuePath="Serial_name" 
-                      SelectedValue="{Binding Path=Serial_name}" Name="ComboBoxStorage" Width="180"
+                      Name="ComboBoxStorage" Width="180"
                       FontFamily="Bahnschrift Light" FontSize="15" IsEditable="True" HorizontalAlignment="Left" Margin="0,8,0,0" />
                 <Button Height="22" Width="40" Margin="10,8,0,0" Content="Add >1" FontSize="10.5" Name="BtnAddStorage" Click="BtnAddStorage_Click">
                     <Button.Background>
@@ -112,19 +112,19 @@
 
         <StackPanel Grid.Row="3" Grid.Column="1">
             <ComboBox ItemsSource="{Binding Path=Socket_name}" DisplayMemberPath="Socket_name" SelectedValuePath="Socket_name" 
-                      SelectedValue="{Binding Path=Socket_name}" Name="ComboBoxSocket" Width="200" 
+                       Name="ComboBoxSocket" Width="200" 
                       FontFamily="Bahnschrift Light" FontSize="15" IsEditable="True" HorizontalAlignment="Left" Margin="0,8,0,0" SelectionChanged="ComboBoxSocket_SelectionChanged"/>
 
             <ComboBox ItemsSource="{Binding Path=Serial_name}" DisplayMemberPath="Serial_name" SelectedValuePath="Serial_name" 
-                      SelectedValue="{Binding Path=Serial_name}" Name="ComboBoxMatherboard" Width="236" 
+                      Name="ComboBoxMatherboard" Width="236" 
                       FontFamily="Bahnschrift Light" FontSize="12" Height="24" IsEditable="True" HorizontalAlignment="Left" Margin="0,6,0,0" />
 
             <ComboBox ItemsSource="{Binding Path=Serial_name}" DisplayMemberPath="Serial_name" SelectedValuePath="Serial_name" 
-                      SelectedValue="{Binding Path=Serial_name}" Name="ComboBoxCPU" Width="236" 
+                      Name="ComboBoxCPU" Width="236" 
                       FontFamily="Bahnschrift Light" FontSize="12" Height="24" IsEditable="True" HorizontalAlignment="Left" Margin="0,6,0,0"/>
 
             <ComboBox ItemsSource="{Binding Path=Serial_name}" DisplayMemberPath="Serial_name" SelectedValuePath="Serial_name" 
-                      SelectedValue="{Binding Path=Serial_name}" Name="ComboBoxCooler" Width="236" 
+                      Name="ComboBoxCooler" Width="236" 
                       FontFamily="Bahnschrift Light" FontSize="12" Height="24" IsEditable="True" HorizontalAlignment="Left" Margin="0,5,0,0" />
         </StackPanel>
         
@@ -134,7 +134,7 @@
 
         <StackPanel Grid.Row="4" Grid.Column="1">
             <ComboBox ItemsSource="{Binding Path=Serial_name}" DisplayMemberPath="Serial_name" SelectedValuePath="Serial_name" 
-                      SelectedValue="{Binding Path=Serial_name}" Name="ComboBoxPower" Width="236" 
+                      Name="ComboBoxPower" Width="236" 
                       FontFamily="Bahnschrift Light" FontSize="12" Height="24" IsEditable="True" HorizontalAlignment="Left" Margin="0,30,0,0" />
         </StackPanel>
 

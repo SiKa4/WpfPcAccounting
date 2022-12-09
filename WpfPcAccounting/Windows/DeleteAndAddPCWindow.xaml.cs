@@ -60,22 +60,36 @@ namespace WpfPcAccounting.Windows
             if(fill)
             {
                 ComboBoxSocket.ItemsSource = DBConnection.DB.Socket.ToList();
-                //ComboBoxSocket.SelectedItem = pc.CPU.Socket;
-
+                ComboBoxSocket.SelectedItem = pc.CPU.Socket;
                 txtKode.Text = pc.Barcode.Barcode_Value.ToString();
                 txtKode.IsEnabled = false;
-
+                txtName.Text = pc.Serial_name;
                 ComboBoxGPU.ItemsSource = DBConnection.DB.GPU.ToList();
-                ComboBoxGPU.SelectedValue = DBConnection.DB.GPU.FirstOrDefault();
-
+                ComboBoxGPU.SelectedItem = pc.GPU;
                 ComboBoxPower.ItemsSource = DBConnection.DB.Power_Supply.ToList();
-
+                ComboBoxPower.SelectedItem = pc.Power_Supply;
                 ComboBoxRAM.ItemsSource = DBConnection.DB.RAM.ToList();
                 ComboBoxRAM.SelectedItem = pc.RAM;
                 NumValue = pc.Quantity_RAM;
                 ComboBoxStorage.ItemsSource = DBConnection.DB.Storage.ToList();
                 ComboBoxTypePC.ItemsSource = DBConnection.DB.Type_PC.ToList();
                 ComboBoxTypePC.SelectedItem = pc.Type_PC;
+
+                var temp = pc.PC_Storage.ToList();
+                if(temp.Count > 1)
+                {
+                    moreStorage = true;
+                    ListStorage.Visibility = Visibility.Visible;
+                    foreach(var i in temp)
+                    {
+                        ListStorage.Items.Add(DBConnection.DB.Storage.Where(x => x.id_Storage == i.id_Storage).FirstOrDefault());
+                    }
+                }
+                else
+                {
+                    ComboBoxStorage.ItemsSource = DBConnection.DB.Storage.ToList();
+                    ComboBoxStorage.SelectedItem = temp.FirstOrDefault().Storage;
+                }
                 onFillComboSocket(true);
             }
             else
@@ -104,6 +118,12 @@ namespace WpfPcAccounting.Windows
             ComboBoxCooler.ItemsSource = DBConnection.DB.Cooler_CPU.Where(x => x.id_Socket == temp.id_Socket).ToList();
             ComboBoxCPU.ItemsSource = DBConnection.DB.CPU.Where(x => x.id_Socket == temp.id_Socket).ToList();
             ComboBoxMatherboard.ItemsSource = DBConnection.DB.Motherboard.Where(x => x.id_Socket == temp.id_Socket).ToList();
+            if(pc != null)
+            {
+                ComboBoxCooler.SelectedItem = pc.Cooler_CPU;
+                ComboBoxCPU.SelectedItem = pc.CPU;
+                ComboBoxMatherboard.SelectedItem = pc.Motherboard;
+            }
         }
 
         //-------------numerik
@@ -217,7 +237,42 @@ namespace WpfPcAccounting.Windows
             }
             else if(CheckSave() && fill == true)
             {
+                pc.CPU = (CPU)ComboBoxCPU.SelectedItem;
+                pc.GPU = (GPU)ComboBoxGPU.SelectedItem;
+                pc.Motherboard = (Motherboard)ComboBoxMatherboard.SelectedItem;
+                pc.RAM = (RAM)ComboBoxRAM.SelectedItem;
+                pc.Power_Supply = (Power_Supply)ComboBoxPower.SelectedItem;
+                pc.Type_PC = (Type_PC)ComboBoxTypePC.SelectedItem;
+                pc.Cooler_CPU = (Cooler_CPU)ComboBoxCooler.SelectedItem;
+                pc.Quantity_RAM = _numValue;
+                pc.Serial_name = txtName.Text;
 
+                var temp = DBConnection.DB.PC_Storage.Where(x => x.id_PC == pc.id_PC).ToList();
+                foreach(var i in temp)
+                {
+                    DBConnection.DB.PC_Storage.Remove(i);
+                }
+
+                if (!moreStorage)
+                {
+                    PC_Storage newPCStorage = new PC_Storage();
+                    newPCStorage.id_Storage = ((Storage)ComboBoxStorage.SelectedItem).id_Storage;
+                    newPCStorage.id_PC = pc.id_PC;
+                    DBConnection.DB.PC_Storage.Add(newPCStorage);
+                }
+                else
+                {
+                    foreach (var i in ListStorage.Items)
+                    {
+                        PC_Storage newPCStorage = new PC_Storage()
+                        {
+                            id_PC = pc.id_PC,
+                            id_Storage = ((Storage)i).id_Storage
+                        };
+                        DBConnection.DB.PC_Storage.Add(newPCStorage);
+                    }
+                }
+                DBConnection.DB.SaveChanges();
             }
             this.Close();
         }
