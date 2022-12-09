@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c4fb446e8ee54a3694eca13b000e5c68" Name="Diagram1">
+        <EntityTypeShape EntityType="AccountingOfEquipmentModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="2" />
+        <EntityTypeShape EntityType="AccountingOfEquipmentModel.Barcode" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="AccountingOfEquipmentModel.Barcode_Inventory" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="AccountingOfEquipmentModel.Cooler_CPU" Width="1.5" PointX="3" PointY="7.75" />
+        <EntityTypeShape EntityType="AccountingOfEquipmentModel.CPU" Width="1.5" PointX="3" PointY="10.5" />
+        <EntityTypeShape EntityType="AccountingOfEquipmentModel.GPU" Width="1.5" PointX="3" PointY="21.75" />
+        <EntityTypeShape EntityType="AccountingOfEquipmentModel.Inventory" Width="1.5" PointX="3" PointY="29.125" />
+        <EntityTypeShape EntityType="AccountingOfEquipmentModel.Motherboard" Width="1.5" PointX="3" PointY="13.625" />
+        <EntityTypeShape EntityType="AccountingOfEquipmentModel.PC" Width="1.5" PointX="5.25" PointY="9.375" />
+        <EntityTypeShape EntityType="AccountingOfEquipmentModel.PC_Storage" Width="1.5" PointX="7.5" PointY="10.625" />
+        <EntityTypeShape EntityType="AccountingOfEquipmentModel.Power_Supply" Width="1.5" PointX="3" PointY="4.375" />
+        <EntityTypeShape EntityType="AccountingOfEquipmentModel.RAM" Width="1.5" PointX="3" PointY="18.875" />
+        <EntityTypeShape EntityType="AccountingOfEquipmentModel.Socket" Width="1.5" PointX="0.75" PointY="10.625" />
+        <EntityTypeShape EntityType="AccountingOfEquipmentModel.Storage" Width="1.5" PointX="5.25" PointY="25.625" />
+        <EntityTypeShape EntityType="AccountingOfEquipmentModel.Type_PC" Width="1.5" PointX="3" PointY="16.5" />
+        <EntityTypeShape EntityType="AccountingOfEquipmentModel.Type_RAM" Width="1.5" PointX="0.75" PointY="19.125" />
+        <EntityTypeShape EntityType="AccountingOfEquipmentModel.Type_Storage" Width="1.5" PointX="3" PointY="25.875" />
+        <EntityTypeShape EntityType="AccountingOfEquipmentModel.Type_Video_Memory" Width="1.5" PointX="0.75" PointY="22" />
+        <AssociationConnector Association="AccountingOfEquipmentModel.FK__Barcode_I__id_Ba__534D60F1" />
+        <AssociationConnector Association="AccountingOfEquipmentModel.FK__PC__id_PC__4316F928" />
+        <AssociationConnector Association="AccountingOfEquipmentModel.FK__Barcode_I__id_In__5441852A" />
+        <AssociationConnector Association="AccountingOfEquipmentModel.FK__Cooler_CP__id_So__2F10007B" />
+        <AssociationConnector Association="AccountingOfEquipmentModel.FK__PC__id_Cooler_CP__440B1D61" />
+        <AssociationConnector Association="AccountingOfEquipmentModel.FK__CPU__id_Socket__31EC6D26" />
+        <AssociationConnector Association="AccountingOfEquipmentModel.FK__PC__id_CPU__44FF419A" />
+        <AssociationConnector Association="AccountingOfEquipmentModel.FK__GPU__id_Type_Vid__3B75D760" />
+        <AssociationConnector Association="AccountingOfEquipmentModel.FK__PC__id_GPU__48CFD27E" />
+        <AssociationConnector Association="AccountingOfEquipmentModel.FK__Motherboa__id_So__34C8D9D1" />
+        <AssociationConnector Association="AccountingOfEquipmentModel.FK__PC__id_Motherboa__46E78A0C" />
+        <AssociationConnector Association="AccountingOfEquipmentModel.FK__PC__id_Power_Sup__49C3F6B7" />
+        <AssociationConnector Association="AccountingOfEquipmentModel.FK__PC__id_RAM__47DBAE45" />
+        <AssociationConnector Association="AccountingOfEquipmentModel.FK__PC__id_Type_PC__45F365D3" />
+        <AssociationConnector Association="AccountingOfEquipmentModel.FK__PC_Storag__id_PC__4CA06362" />
+        <AssociationConnector Association="AccountingOfEquipmentModel.FK__PC_Storag__id_St__4D94879B" />
+        <AssociationConnector Association="AccountingOfEquipmentModel.FK__RAM__id_Type_RAM__403A8C7D" />
+        <AssociationConnector Association="AccountingOfEquipmentModel.FK__Storage__Amount__2A4B4B5E" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

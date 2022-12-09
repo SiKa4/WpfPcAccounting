@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfPcAccounting
+namespace WpfPcAccounting.Model
 {
     using System;
     using System.Collections.Generic;

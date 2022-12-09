@@ -7,23 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfPcAccounting
+namespace WpfPcAccounting.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Type_Video_Memory
+    public partial class RAM
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Type_Video_Memory()
+        public RAM()
         {
-            this.GPU = new HashSet<GPU>();
+            this.PC = new HashSet<PC>();
         }
     
-        public int id_Type_Video_Memory { get; set; }
-        public string Name_Type { get; set; }
+        public int id_RAM { get; set; }
+        public string Serial_name { get; set; }
+        public int id_Type_RAM { get; set; }
+        public string Frequency { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GPU> GPU { get; set; }
+        public virtual ICollection<PC> PC { get; set; }
+        public virtual Type_RAM Type_RAM { get; set; }
     }
 }

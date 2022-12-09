@@ -7,23 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfPcAccounting
+namespace WpfPcAccounting.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Inventory
+    public partial class Type_RAM
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Inventory()
+        public Type_RAM()
         {
-            this.Barcode_Inventory = new HashSet<Barcode_Inventory>();
+            this.RAM = new HashSet<RAM>();
         }
     
-        public int id_Inventory { get; set; }
-        public System.DateTime Date { get; set; }
+        public int id_Type_RAM { get; set; }
+        public string Name_Type { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Barcode_Inventory> Barcode_Inventory { get; set; }
+        public virtual ICollection<RAM> RAM { get; set; }
     }
 }

@@ -7,25 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfPcAccounting
+namespace WpfPcAccounting.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Cooler_CPU
+    public partial class Motherboard
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Cooler_CPU()
+        public Motherboard()
         {
-            this.CPU = new HashSet<CPU>();
+            this.PC = new HashSet<PC>();
         }
     
-        public int id_Cooler_CPU { get; set; }
+        public int id_Motherboard { get; set; }
         public string Serial_name { get; set; }
         public int id_Socket { get; set; }
     
         public virtual Socket Socket { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CPU> CPU { get; set; }
+        public virtual ICollection<PC> PC { get; set; }
     }
 }

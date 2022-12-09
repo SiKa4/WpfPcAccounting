@@ -7,23 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfPcAccounting
+namespace WpfPcAccounting.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Type_Storage
+    public partial class Type_PC
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Type_Storage()
+        public Type_PC()
         {
-            this.Storage = new HashSet<Storage>();
+            this.PC = new HashSet<PC>();
         }
     
-        public int id_Type_Storage { get; set; }
+        public int id_Type_PC { get; set; }
         public string Name_type { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Storage> Storage { get; set; }
+        public virtual ICollection<PC> PC { get; set; }
     }
 }

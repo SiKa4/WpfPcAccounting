@@ -7,27 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfPcAccounting
+namespace WpfPcAccounting.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class RAM
+    public partial class CPU
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RAM()
+        public CPU()
         {
             this.PC = new HashSet<PC>();
         }
     
-        public int id_RAM { get; set; }
+        public int id_CPU { get; set; }
         public string Serial_name { get; set; }
-        public int id_Type_RAM { get; set; }
+        public int Cores { get; set; }
         public string Frequency { get; set; }
-        public string Amount_RAM { get; set; }
+        public int id_Socket { get; set; }
     
+        public virtual Socket Socket { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PC> PC { get; set; }
-        public virtual Type_RAM Type_RAM { get; set; }
     }
 }

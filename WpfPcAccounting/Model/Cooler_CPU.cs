@@ -7,24 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfPcAccounting
+namespace WpfPcAccounting.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Barcode
+    public partial class Cooler_CPU
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Barcode()
+        public Cooler_CPU()
         {
-            this.Barcode_Inventory = new HashSet<Barcode_Inventory>();
+            this.PC = new HashSet<PC>();
         }
     
-        public int id_Barcode { get; set; }
-        public int Barcode_Value { get; set; }
+        public int id_Cooler_CPU { get; set; }
+        public string Serial_name { get; set; }
+        public int id_Socket { get; set; }
     
+        public virtual Socket Socket { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Barcode_Inventory> Barcode_Inventory { get; set; }
-        public virtual PC PC { get; set; }
+        public virtual ICollection<PC> PC { get; set; }
     }
 }

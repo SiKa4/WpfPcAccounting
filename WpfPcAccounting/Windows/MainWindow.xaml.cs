@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfPcAccounting.Code;
+using WpfPcAccounting.Pages;
+using WpfPcAccounting.Windows;
 
 namespace WpfPcAccounting
 {
@@ -23,6 +26,15 @@ namespace WpfPcAccounting
         public MainWindow()
         {
             InitializeComponent();
+            MainAutiFrame.NavigationService.Navigate(new ListAddedPC());
+            ComboFindKode.ItemsSource = DBConnection.DB.Barcode.ToList();
+
+        }
+
+        private void BtnAddNewPC_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteAndAddPCWindow win = new DeleteAndAddPCWindow(false);
+            win.ShowDialog();
         }
     }
 }

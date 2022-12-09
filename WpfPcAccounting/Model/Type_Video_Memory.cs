@@ -7,19 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfPcAccounting
+namespace WpfPcAccounting.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Barcode_Inventory
+    public partial class Type_Video_Memory
     {
-        public int id_Barcode_Inventory { get; set; }
-        public int id_Barcode { get; set; }
-        public int id_Inventory { get; set; }
-        public int Count { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Type_Video_Memory()
+        {
+            this.GPU = new HashSet<GPU>();
+        }
     
-        public virtual Barcode Barcode { get; set; }
-        public virtual Inventory Inventory { get; set; }
+        public int id_Type_Video_Memory { get; set; }
+        public string Name_Type { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GPU> GPU { get; set; }
     }
 }

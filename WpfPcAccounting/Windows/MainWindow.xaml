@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfPcAccounting"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" >
+        Title="Учет ПК" Height="450" Width="800" Icon="/Images/free-icon-pc-2292038.png" ResizeMode="CanMinimize">
     <Window.Background>
         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}"/>
     </Window.Background>
@@ -22,13 +22,21 @@
         </Grid.ColumnDefinitions>
 
         <Rectangle Grid.Row="1" Grid.Column="1" StrokeThickness="1" Stroke="Black" Margin="0,5,0,0"/>
-        <Frame x:Name ="MainAutiFrame" NavigationUIVisibility="Hidden" Grid.Row="1" Grid.Column="1" Margin="0,5,0,0" />
-        
+        <Frame x:Name ="MainAutiFrame" NavigationUIVisibility="Hidden" Grid.Row="1" Grid.Column="1" Margin="5,10,5,5" />
+
         <Rectangle Grid.Row="0" Grid.Column="1" StrokeThickness="1" Stroke="Black" Margin="0,5,0,0" />
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="0,5,0,0" >
-            <Button Height="30" Width="130" Margin="40,0,0,0" Content=""/>
-            <Button Height="30" Width="130" Margin="150,0,0,0" Content=""/>
-            <Button Height="30" Width="130" Margin="150,0,0,0" Content=""/>
+            <Button Height="30" Width="142" Margin="32,0,0,0" Content="Начать инвентаризацию" FontFamily="Bahnschrift Light" />
+            <ComboBox ItemsSource="{Binding Path=Barcode_Value}" DisplayMemberPath="Barcode_Value" SelectedValuePath="Barcode_Value" 
+                      SelectedValue="{Binding Path=Barcode_Value}" Name="ComboFindKode" Height="30" Width="160" 
+                      Margin="130,0,0,0" FontFamily="Bahnschrift Light" FontSize="20" IsEditable="True"/>
+            
+            <Button Height="30" Width="30" Margin="5,0,0,0" >
+                <Button.Background>
+                    <ImageBrush ImageSource="/Images/free-icon-search-6194755.png"/>
+                </Button.Background>
+            </Button>
+            <Button Height="30" Width="130" Margin="120,0,0,0" Content="Добавить компьютер" FontFamily="Bahnschrift Light" Name="BtnAddNewPC" Click="BtnAddNewPC_Click"/>
         </StackPanel>
     </Grid>
 </Window>

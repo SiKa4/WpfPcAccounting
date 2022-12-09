@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfPcAccounting
+namespace WpfPcAccounting.Model
 {
     using System;
     using System.Data.Entity;
@@ -27,6 +27,7 @@ namespace WpfPcAccounting
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Barcode> Barcode { get; set; }
         public virtual DbSet<Barcode_Inventory> Barcode_Inventory { get; set; }
         public virtual DbSet<Cooler_CPU> Cooler_CPU { get; set; }
@@ -40,7 +41,6 @@ namespace WpfPcAccounting
         public virtual DbSet<RAM> RAM { get; set; }
         public virtual DbSet<Socket> Socket { get; set; }
         public virtual DbSet<Storage> Storage { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Type_PC> Type_PC { get; set; }
         public virtual DbSet<Type_RAM> Type_RAM { get; set; }
         public virtual DbSet<Type_Storage> Type_Storage { get; set; }

@@ -7,18 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfPcAccounting
+namespace WpfPcAccounting.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class PC_Storage
+    public partial class Power_Supply
     {
-        public int id_PC_Storage { get; set; }
-        public int id_PC { get; set; }
-        public int id_Storage { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Power_Supply()
+        {
+            this.PC = new HashSet<PC>();
+        }
     
-        public virtual PC PC { get; set; }
-        public virtual Storage Storage { get; set; }
+        public int id_Power_Supply { get; set; }
+        public string Serial_name { get; set; }
+        public int Power { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PC> PC { get; set; }
     }
 }

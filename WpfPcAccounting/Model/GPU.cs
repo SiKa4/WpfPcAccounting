@@ -7,29 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfPcAccounting
+namespace WpfPcAccounting.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class CPU
+    public partial class GPU
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CPU()
+        public GPU()
         {
-            this.Motherboard = new HashSet<Motherboard>();
+            this.PC = new HashSet<PC>();
         }
     
-        public int id_CPU { get; set; }
+        public int id_GPU { get; set; }
         public string Serial_name { get; set; }
-        public int Cores { get; set; }
-        public string Frequency { get; set; }
-        public int id_Cooler_CPU { get; set; }
-        public int id_Socket { get; set; }
+        public int Video_memory { get; set; }
+        public int id_Type_Video_Memory { get; set; }
     
-        public virtual Cooler_CPU Cooler_CPU { get; set; }
-        public virtual Socket Socket { get; set; }
+        public virtual Type_Video_Memory Type_Video_Memory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Motherboard> Motherboard { get; set; }
+        public virtual ICollection<PC> PC { get; set; }
     }
 }

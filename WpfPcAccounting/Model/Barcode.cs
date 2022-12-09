@@ -7,34 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfPcAccounting
+namespace WpfPcAccounting.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class PC
+    public partial class Barcode
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PC()
+        public Barcode()
         {
-            this.PC_Storage = new HashSet<PC_Storage>();
+            this.Barcode_Inventory = new HashSet<Barcode_Inventory>();
         }
     
-        public int id_PC { get; set; }
-        public int id_Type_PC { get; set; }
-        public string Serial_name { get; set; }
-        public int id_Motherboard { get; set; }
-        public int id_RAM { get; set; }
-        public int id_GPU { get; set; }
-        public int id_Power_Supply { get; set; }
+        public int id_Barcode { get; set; }
+        public long Barcode_Value { get; set; }
     
-        public virtual Barcode Barcode { get; set; }
-        public virtual GPU GPU { get; set; }
-        public virtual Motherboard Motherboard { get; set; }
-        public virtual Power_Supply Power_Supply { get; set; }
-        public virtual RAM RAM { get; set; }
-        public virtual Type_PC Type_PC { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PC_Storage> PC_Storage { get; set; }
+        public virtual ICollection<Barcode_Inventory> Barcode_Inventory { get; set; }
+        public virtual PC PC { get; set; }
     }
 }
