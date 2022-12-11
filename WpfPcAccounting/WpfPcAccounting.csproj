@@ -69,7 +69,23 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Code\DBConnection.cs" />
+    <Page Include="Pages\GpuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ListAddedPC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RamPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TypePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddPCPartsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -160,8 +176,20 @@
     <Compile Include="Model\Type_Video_Memory.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\GpuPage.xaml.cs">
+      <DependentUpon>GpuPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ListAddedPC.xaml.cs">
       <DependentUpon>ListAddedPC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RamPage.xaml.cs">
+      <DependentUpon>RamPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TypePage.xaml.cs">
+      <DependentUpon>TypePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddPCPartsWindow.xaml.cs">
+      <DependentUpon>AddPCPartsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\DeleteAndAddPCWindow.xaml.cs">
       <DependentUpon>DeleteAndAddPCWindow.xaml</DependentUpon>
@@ -215,6 +243,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\free-icon-add-button-7170180.png" />
+    <Resource Include="Images\video-card.png" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

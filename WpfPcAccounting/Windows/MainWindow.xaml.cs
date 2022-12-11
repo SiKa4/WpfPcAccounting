@@ -50,6 +50,7 @@ namespace WpfPcAccounting
                     DeleteAndAddPCWindow win = new DeleteAndAddPCWindow(pc);
                     win.ShowDialog();
                     MainAutiFrame.NavigationService.Navigate(new ListAddedPC());
+                    ComboFindKode.Text = string.Empty;
                 }
                 else MessageBox.Show("Компьютер не найден!", "Ошибка!!!", MessageBoxButton.OK, MessageBoxImage.Information);
             }

@@ -284,10 +284,19 @@ namespace WpfPcAccounting.Windows
 
         private void txtKode_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (!Char.IsDigit(e.Text, 0))
-            {
-                e.Handled = true;
-            }
+            if (!Char.IsDigit(e.Text, 0)) e.Handled = true;
+        }
+
+        private void BtnAddParts_Click(object sender, RoutedEventArgs e)
+        {
+            AddPCPartsWindow win = new AddPCPartsWindow(); 
+            win.ShowDialog();
+            ComboBoxGPU.ItemsSource = DBConnection.DB.GPU.ToList();
+            ComboBoxPower.ItemsSource = DBConnection.DB.Power_Supply.ToList();
+            ComboBoxRAM.ItemsSource = DBConnection.DB.RAM.ToList();
+            ComboBoxSocket.ItemsSource = DBConnection.DB.Socket.ToList();
+            ComboBoxStorage.ItemsSource = DBConnection.DB.Storage.ToList();
+            ComboBoxTypePC.ItemsSource = DBConnection.DB.Type_PC.ToList();
         }
     }
 }
