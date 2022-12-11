@@ -169,6 +169,11 @@ namespace WpfPcAccounting.Windows
                 ComboBoxGPU.SelectedItem != null && ComboBoxMatherboard.SelectedItem != null &&
                 ComboBoxPower.SelectedItem != null && ComboBoxRAM.SelectedItem != null &&
                 ComboBoxSocket.SelectedItem != null && ComboBoxStorage.SelectedItem != null &&
+                ComboBoxTypePC.SelectedItem != null && txtKode.Text.Length == 13 && txtName.Text != string.Empty ||
+                ComboBoxCooler.SelectedItem != null && ComboBoxCPU.SelectedItem != null &&
+                ComboBoxGPU.SelectedItem != null && ComboBoxMatherboard.SelectedItem != null &&
+                ComboBoxPower.SelectedItem != null && ComboBoxRAM.SelectedItem != null &&
+                ComboBoxSocket.SelectedItem != null && ListStorage.Items.Count != 0 &&
                 ComboBoxTypePC.SelectedItem != null && txtKode.Text.Length == 13 && txtName.Text != string.Empty)
             {
                 BtnSave.IsEnabled = true;

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfPcAccounting.Code;
+using WpfPcAccounting.Model;
 using WpfPcAccounting.Pages;
 using WpfPcAccounting.Windows;
 
@@ -35,6 +36,29 @@ namespace WpfPcAccounting
             DeleteAndAddPCWindow win = new DeleteAndAddPCWindow(false);
             win.ShowDialog();
             MainAutiFrame.NavigationService.Navigate(new ListAddedPC());
+            ComboFindKode.ItemsSource = DBConnection.DB.Barcode.ToList();
+        }
+
+        private void BtnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            if(ComboFindKode.Text != "" && ComboFindKode.Text.Length == 13)
+            {
+                var temp = Convert.ToInt64(ComboFindKode.Text);
+                PC pc = DBConnection.DB.PC.Where(x => x.Barcode.Barcode_Value == temp).FirstOrDefault();
+                if (pc != null)
+                {
+                    DeleteAndAddPCWindow win = new DeleteAndAddPCWindow(pc);
+                    win.ShowDialog();
+                    MainAutiFrame.NavigationService.Navigate(new ListAddedPC());
+                }
+                else MessageBox.Show("Компьютер не найден!", "Ошибка!!!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else MessageBox.Show("Некорректный формат данных!", "Ошибка!!!", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void ComboFindKode_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0)) e.Handled = true;
         }
     }
 }
