@@ -40,22 +40,22 @@ namespace WpfPcAccounting.Windows
                     MainAutiFrame.NavigationService.Navigate(new GpuPage());
                     break;
                 case "Socket":
-
+                    MainAutiFrame.NavigationService.Navigate(new SocketPage());
                     break;
                 case "Motherboard":
-
+                    MainAutiFrame.NavigationService.Navigate(new MotherboardPage());
                     break;
                 case "CPU":
-
+                    MainAutiFrame.NavigationService.Navigate(new CpuPage());
                     break;
                 case "Cooler":
-
+                    MainAutiFrame.NavigationService.Navigate(new CoolerPage());
                     break;
                 case "Power":
-
+                    MainAutiFrame.NavigationService.Navigate(new PowerPage());
                     break;
                 case "Storage":
-
+                    MainAutiFrame.NavigationService.Navigate(new StoragePage());
                     break;
             }
         }

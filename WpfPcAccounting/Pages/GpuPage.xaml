@@ -9,38 +9,36 @@
       Title="GpuPage" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}">
 
     <Grid>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <ListView Grid.Row="1" Name="ListGPU" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Serial_name}" Width="182">Название</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Video_memory}" Width="85">Кол-во памяти</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Type_Video_Memory.Name_Type}" Width="70">Тип памяти</GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <StackPanel Grid.Row="0" Margin="30,0,30,0" >
-                <TextBlock Text="Добавление GPU" FontSize="16" HorizontalAlignment="Center"/>
-                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                    <TextBlock Text="Наименование:" FontSize="13" HorizontalAlignment="Left" />
-                    <TextBox Height="20" Width="150" Margin="5,0,0,0" Name="txtName"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                    <TextBlock Text="Тип памяти:" FontSize="13" HorizontalAlignment="Left" />
-                    <ComboBox ItemsSource="{Binding Path=Name_Type}" DisplayMemberPath="Name_Type" SelectedValuePath="Name_Type" 
-                      Name="ComboBoxType" Width="100" 
-                      FontFamily="Bahnschrift Light" FontSize="13" IsEditable="True" HorizontalAlignment="Left" Margin="5,0,0,0" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                    <TextBlock Text="Кол-во видео-памяти:" FontSize="13" HorizontalAlignment="Left" />
-                    <TextBox Height="20" Width="135" Margin="5,0,0,0" Name="txtMemory" PreviewTextInput="txtMemory_PreviewTextInput"/>
-                </StackPanel>
-                <Button Height="20" Width="80" Margin="0,5,0,0" Content="Добавить" Name="BtnAdd" Click="BtnAdd_Click" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ListView Grid.Row="1" Name="ListGPU" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Serial_name}" Width="182">Название</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Video_memory}" Width="85">Кол-во памяти</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Type_Video_Memory.Name_Type}" Width="70">Тип памяти</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel Grid.Row="0" Margin="30,0,30,0" >
+            <TextBlock Text="Добавление GPU" FontSize="16" HorizontalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Text="Наименование:" FontSize="13" HorizontalAlignment="Left" />
+                <TextBox Height="20" Width="150" Margin="5,0,0,0" Name="txtName"/>
             </StackPanel>
-        </Grid>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <TextBlock Text="Тип памяти:" FontSize="13" HorizontalAlignment="Left" />
+                <ComboBox ItemsSource="{Binding Path=Name_Type}" DisplayMemberPath="Name_Type" SelectedValuePath="Name_Type" 
+                    Name="ComboBoxType" Width="100" 
+                    FontFamily="Bahnschrift Light" FontSize="13" IsEditable="True" HorizontalAlignment="Left" Margin="5,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <TextBlock Text="Кол-во видео-памяти:" FontSize="13" HorizontalAlignment="Left" />
+                <TextBox Height="20" Width="135" Margin="5,0,0,0" Name="txtMemory" PreviewTextInput="txtMemory_PreviewTextInput"/>
+            </StackPanel>
+            <Button Height="20" Width="80" Margin="0,5,0,0" Content="Добавить" Name="BtnAdd" Click="BtnAdd_Click" />
+        </StackPanel>
     </Grid>
 </Page>

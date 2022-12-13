@@ -1,0 +1,49 @@
+﻿<Page x:Class="WpfPcAccounting.Pages.CpuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfPcAccounting.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="264" d:DesignWidth="342"
+      Title="CpuPage" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ListView Grid.Row="1" Name="ListCpu" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Serial_name}" Width="129">Название</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Socket.Socket_name}" Width="73">Кол-во ядер</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Frequency}" Width="48">Частота</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Socket.Socket_name}" Width="85">Сокет</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel Grid.Row="0" Margin="30,0,30,0" >
+            <TextBlock Text="Добавление CPU" FontSize="16" HorizontalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" Margin="0,1,0,0">
+                <TextBlock Text="Наименование:" FontSize="13" HorizontalAlignment="Left" />
+                <TextBox Height="20" Width="150" Margin="5,0,0,0" Name="txtName"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,1,0,0">
+                <TextBlock Text="Ядра (кол-во):" FontSize="13" HorizontalAlignment="Left" />
+                <TextBox Height="20" Width="150" Margin="5,0,0,0" Name="txtCores" PreviewTextInput="txtCores_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,1,0,0">
+                <TextBlock Text="Частота (max - min):" FontSize="13" HorizontalAlignment="Left" />
+                <TextBox Height="20" Width="150" Margin="5,0,0,0" Name="txtFrenquency"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,1,0,0">
+                <TextBlock Text="Сокет:" FontSize="13" HorizontalAlignment="Left" />
+                <ComboBox ItemsSource="{Binding Path=Socket_name}" DisplayMemberPath="Socket_name" SelectedValuePath="Socket_name" 
+                    Name="ComboBoxSoket" Width="100" 
+                    FontFamily="Bahnschrift Light" FontSize="13" IsEditable="True" HorizontalAlignment="Left" Margin="5,0,0,0" />
+            </StackPanel>
+            <Button Height="20" Width="80" Margin="0,2,0,0" Content="Добавить" Name="BtnAdd" Click="BtnAdd_Click" />
+        </StackPanel>
+    </Grid>
+</Page>

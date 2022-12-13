@@ -69,6 +69,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Code\DBConnection.cs" />
+    <Page Include="Pages\CoolerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CpuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\GpuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -77,7 +85,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\MotherboardPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PowerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\RamPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SocketPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\StoragePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -176,14 +200,32 @@
     <Compile Include="Model\Type_Video_Memory.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\CoolerPage.xaml.cs">
+      <DependentUpon>CoolerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CpuPage.xaml.cs">
+      <DependentUpon>CpuPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\GpuPage.xaml.cs">
       <DependentUpon>GpuPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ListAddedPC.xaml.cs">
       <DependentUpon>ListAddedPC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\MotherboardPage.xaml.cs">
+      <DependentUpon>MotherboardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PowerPage.xaml.cs">
+      <DependentUpon>PowerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\RamPage.xaml.cs">
       <DependentUpon>RamPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SocketPage.xaml.cs">
+      <DependentUpon>SocketPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StoragePage.xaml.cs">
+      <DependentUpon>StoragePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\TypePage.xaml.cs">
       <DependentUpon>TypePage.xaml</DependentUpon>
