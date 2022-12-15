@@ -24,11 +24,11 @@ namespace WpfPcAccounting.Pages
     public partial class InventoryPage : Page
     {
         Inventory inventory;
-        Frame MainFrame;
-        public InventoryPage(Frame MainFrame)
+        MainWindow MainWindow;
+        public InventoryPage(MainWindow MainWindow)
         {
             InitializeComponent();
-            this.MainFrame = MainFrame;
+            this.MainWindow = MainWindow;
             inventory = new Inventory()
             {
                 CreateAt = DateTime.Now
@@ -78,7 +78,9 @@ namespace WpfPcAccounting.Pages
 
         private void BtnFinishInventory_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new ListAddedPC());
+            if (MessageBox.Show("Вы уверены?", "Закрыть старницу", MessageBoxButton.YesNo, MessageBoxImage.Question) 
+                == MessageBoxResult.Yes)
+            MainWindow.StartInventory_Click(sender, e);
         }
     }
 }

@@ -64,7 +64,7 @@ namespace WpfPcAccounting
             if (!Char.IsDigit(e.Text, 0)) e.Handled = true;
         }
 
-        private void StartInventory_Click(object sender, RoutedEventArgs e)
+        public void StartInventory_Click(object sender, RoutedEventArgs e)
         {
             if (isInventory)
             {
@@ -74,7 +74,7 @@ namespace WpfPcAccounting
             else
             {
                 StartInventory.Background = Brushes.LightGreen;
-                MainAutiFrame.NavigationService.Navigate(new InventoryPage(MainAutiFrame));
+                MainAutiFrame.NavigationService.Navigate(new InventoryPage(this));
             }
             isInventory = !isInventory;
         }
