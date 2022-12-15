@@ -48,7 +48,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <ListView Grid.Row="0" Grid.Column="0" x:Name="ListPC" ItemTemplate="{StaticResource Elements}" 
-                  Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" MouseDoubleClick="ListPC_MouseDoubleClick" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
-        </ListView>
+                  Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" 
+                  MouseDoubleClick="ListPC_MouseDoubleClick" ScrollViewer.HorizontalScrollBarVisibility="Hidden"/>
     </Grid>
 </Page>

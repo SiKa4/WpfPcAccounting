@@ -48,12 +48,21 @@
           <Property Name="Video_memory" Type="int" Nullable="false" />
           <Property Name="id_Type_Video_Memory" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="id_History" />
+          </Key>
+          <Property Name="id_History" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PC_id" Type="int" Nullable="false" />
+          <Property Name="Operation" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="CreateAt" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Inventory">
           <Key>
             <PropertyRef Name="id_Inventory" />
           </Key>
           <Property Name="id_Inventory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="CreateAt" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Motherboard">
           <Key>
@@ -157,6 +166,28 @@
           <Property Name="id_Type_Video_Memory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name_Type" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "AccountingOfEquipment.dbo.TechnicalSpecifications" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="TechnicalSpecifications">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="PCname" />
+            <PropertyRef Name="NameMotherboard" />
+            <PropertyRef Name="NameRAM" />
+            <PropertyRef Name="NameGPU" />
+            <PropertyRef Name="NamePower" />
+            <PropertyRef Name="NameCPU" />
+            <PropertyRef Name="NameCooler" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="PCname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameMotherboard" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameRAM" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameGPU" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NamePower" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameCPU" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameCooler" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <Association Name="FK__Barcode_I__id_Ba__534D60F1">
           <End Role="Barcode" Type="Self.Barcode" Multiplicity="1" />
           <End Role="Barcode_Inventory" Type="Self.Barcode_Inventory" Multiplicity="*" />
@@ -214,6 +245,18 @@
             </Principal>
             <Dependent Role="GPU">
               <PropertyRef Name="id_Type_Video_Memory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__History__CreateA__17036CC0">
+          <End Role="PC" Type="Self.PC" Multiplicity="1" />
+          <End Role="History" Type="Self.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PC">
+              <PropertyRef Name="id_PC" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="PC_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -327,18 +370,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PC_Storag__id_PC__4CA06362">
-          <End Role="PC" Type="Self.PC" Multiplicity="1" />
-          <End Role="PC_Storage" Type="Self.PC_Storage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PC">
-              <PropertyRef Name="id_PC" />
-            </Principal>
-            <Dependent Role="PC_Storage">
-              <PropertyRef Name="id_PC" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__PC_Storag__id_St__4D94879B">
           <End Role="Storage" Type="Self.Storage" Multiplicity="1" />
           <End Role="PC_Storage" Type="Self.PC_Storage" Multiplicity="*" />
@@ -372,6 +403,20 @@
             </Principal>
             <Dependent Role="Storage">
               <PropertyRef Name="id_Type_Storage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PC_Storage_PC">
+          <End Role="PC" Type="Self.PC" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PC_Storage" Type="Self.PC_Storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PC">
+              <PropertyRef Name="id_PC" />
+            </Principal>
+            <Dependent Role="PC_Storage">
+              <PropertyRef Name="id_PC" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -412,6 +457,7 @@
           <EntitySet Name="Cooler_CPU" EntityType="Self.Cooler_CPU" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CPU" EntityType="Self.CPU" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GPU" EntityType="Self.GPU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History" EntityType="Self.History" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Motherboard" EntityType="Self.Motherboard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PC" EntityType="Self.PC" Schema="dbo" store:Type="Tables" />
@@ -425,6 +471,18 @@
           <EntitySet Name="Type_RAM" EntityType="Self.Type_RAM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Type_Storage" EntityType="Self.Type_Storage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Type_Video_Memory" EntityType="Self.Type_Video_Memory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TechnicalSpecifications" EntityType="Self.TechnicalSpecifications" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TechnicalSpecifications].[ID] AS [ID], 
+    [TechnicalSpecifications].[PCname] AS [PCname], 
+    [TechnicalSpecifications].[NameMotherboard] AS [NameMotherboard], 
+    [TechnicalSpecifications].[NameRAM] AS [NameRAM], 
+    [TechnicalSpecifications].[NameGPU] AS [NameGPU], 
+    [TechnicalSpecifications].[NamePower] AS [NamePower], 
+    [TechnicalSpecifications].[NameCPU] AS [NameCPU], 
+    [TechnicalSpecifications].[NameCooler] AS [NameCooler]
+    FROM [dbo].[TechnicalSpecifications] AS [TechnicalSpecifications]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__Barcode_I__id_Ba__534D60F1" Association="Self.FK__Barcode_I__id_Ba__534D60F1">
             <End Role="Barcode" EntitySet="Barcode" />
             <End Role="Barcode_Inventory" EntitySet="Barcode_Inventory" />
@@ -444,6 +502,10 @@
           <AssociationSet Name="FK__GPU__id_Type_Vid__3B75D760" Association="Self.FK__GPU__id_Type_Vid__3B75D760">
             <End Role="Type_Video_Memory" EntitySet="Type_Video_Memory" />
             <End Role="GPU" EntitySet="GPU" />
+          </AssociationSet>
+          <AssociationSet Name="FK__History__CreateA__17036CC0" Association="Self.FK__History__CreateA__17036CC0">
+            <End Role="PC" EntitySet="PC" />
+            <End Role="History" EntitySet="History" />
           </AssociationSet>
           <AssociationSet Name="FK__Motherboa__id_So__34C8D9D1" Association="Self.FK__Motherboa__id_So__34C8D9D1">
             <End Role="Socket" EntitySet="Socket" />
@@ -481,10 +543,6 @@
             <End Role="Type_PC" EntitySet="Type_PC" />
             <End Role="PC" EntitySet="PC" />
           </AssociationSet>
-          <AssociationSet Name="FK__PC_Storag__id_PC__4CA06362" Association="Self.FK__PC_Storag__id_PC__4CA06362">
-            <End Role="PC" EntitySet="PC" />
-            <End Role="PC_Storage" EntitySet="PC_Storage" />
-          </AssociationSet>
           <AssociationSet Name="FK__PC_Storag__id_St__4D94879B" Association="Self.FK__PC_Storag__id_St__4D94879B">
             <End Role="Storage" EntitySet="Storage" />
             <End Role="PC_Storage" EntitySet="PC_Storage" />
@@ -496,6 +554,10 @@
           <AssociationSet Name="FK__Storage__Amount__2A4B4B5E" Association="Self.FK__Storage__Amount__2A4B4B5E">
             <End Role="Type_Storage" EntitySet="Type_Storage" />
             <End Role="Storage" EntitySet="Storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PC_Storage_PC" Association="Self.FK_PC_Storage_PC">
+            <End Role="PC" EntitySet="PC" />
+            <End Role="PC_Storage" EntitySet="PC_Storage" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -533,12 +595,12 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <EntitySet Name="sysdiagrams" EntityType="AccountingOfEquipmentModel.sysdiagrams" />
           <EntitySet Name="Barcode" EntityType="AccountingOfEquipmentModel.Barcode" />
           <EntitySet Name="Barcode_Inventory" EntityType="AccountingOfEquipmentModel.Barcode_Inventory" />
           <EntitySet Name="Cooler_CPU" EntityType="AccountingOfEquipmentModel.Cooler_CPU" />
           <EntitySet Name="CPU" EntityType="AccountingOfEquipmentModel.CPU" />
           <EntitySet Name="GPU" EntityType="AccountingOfEquipmentModel.GPU" />
+          <EntitySet Name="History" EntityType="AccountingOfEquipmentModel.History" />
           <EntitySet Name="Inventory" EntityType="AccountingOfEquipmentModel.Inventory" />
           <EntitySet Name="Motherboard" EntityType="AccountingOfEquipmentModel.Motherboard" />
           <EntitySet Name="PC" EntityType="AccountingOfEquipmentModel.PC" />
@@ -547,10 +609,12 @@
           <EntitySet Name="RAM" EntityType="AccountingOfEquipmentModel.RAM" />
           <EntitySet Name="Socket" EntityType="AccountingOfEquipmentModel.Socket" />
           <EntitySet Name="Storage" EntityType="AccountingOfEquipmentModel.Storage" />
+          <EntitySet Name="sysdiagrams" EntityType="AccountingOfEquipmentModel.sysdiagrams" />
           <EntitySet Name="Type_PC" EntityType="AccountingOfEquipmentModel.Type_PC" />
           <EntitySet Name="Type_RAM" EntityType="AccountingOfEquipmentModel.Type_RAM" />
           <EntitySet Name="Type_Storage" EntityType="AccountingOfEquipmentModel.Type_Storage" />
           <EntitySet Name="Type_Video_Memory" EntityType="AccountingOfEquipmentModel.Type_Video_Memory" />
+          <EntitySet Name="TechnicalSpecifications" EntityType="AccountingOfEquipmentModel.TechnicalSpecifications" />
           <AssociationSet Name="FK__Barcode_I__id_Ba__534D60F1" Association="AccountingOfEquipmentModel.FK__Barcode_I__id_Ba__534D60F1">
             <End Role="Barcode" EntitySet="Barcode" />
             <End Role="Barcode_Inventory" EntitySet="Barcode_Inventory" />
@@ -587,6 +651,10 @@
             <End Role="GPU" EntitySet="GPU" />
             <End Role="PC" EntitySet="PC" />
           </AssociationSet>
+          <AssociationSet Name="FK__History__CreateA__17036CC0" Association="AccountingOfEquipmentModel.FK__History__CreateA__17036CC0">
+            <End Role="PC" EntitySet="PC" />
+            <End Role="History" EntitySet="History" />
+          </AssociationSet>
           <AssociationSet Name="FK__Motherboa__id_So__34C8D9D1" Association="AccountingOfEquipmentModel.FK__Motherboa__id_So__34C8D9D1">
             <End Role="Socket" EntitySet="Socket" />
             <End Role="Motherboard" EntitySet="Motherboard" />
@@ -607,7 +675,7 @@
             <End Role="Type_PC" EntitySet="Type_PC" />
             <End Role="PC" EntitySet="PC" />
           </AssociationSet>
-          <AssociationSet Name="FK__PC_Storag__id_PC__4CA06362" Association="AccountingOfEquipmentModel.FK__PC_Storag__id_PC__4CA06362">
+          <AssociationSet Name="FK_PC_Storage_PC" Association="AccountingOfEquipmentModel.FK_PC_Storage_PC">
             <End Role="PC" EntitySet="PC" />
             <End Role="PC_Storage" EntitySet="PC_Storage" />
           </AssociationSet>
@@ -635,16 +703,6 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="Barcode">
           <Key>
             <PropertyRef Name="id_Barcode" />
@@ -698,12 +756,22 @@
           <NavigationProperty Name="Type_Video_Memory" Relationship="AccountingOfEquipmentModel.FK__GPU__id_Type_Vid__3B75D760" FromRole="GPU" ToRole="Type_Video_Memory" />
           <NavigationProperty Name="PC" Relationship="AccountingOfEquipmentModel.FK__PC__id_GPU__48CFD27E" FromRole="GPU" ToRole="PC" />
         </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="id_History" />
+          </Key>
+          <Property Name="id_History" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PC_id" Type="Int32" Nullable="false" />
+          <Property Name="Operation" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreateAt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="PC" Relationship="AccountingOfEquipmentModel.FK__History__CreateA__17036CC0" FromRole="History" ToRole="PC" />
+        </EntityType>
         <EntityType Name="Inventory">
           <Key>
             <PropertyRef Name="id_Inventory" />
           </Key>
           <Property Name="id_Inventory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateAt" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Barcode_Inventory" Relationship="AccountingOfEquipmentModel.FK__Barcode_I__id_In__5441852A" FromRole="Inventory" ToRole="Barcode_Inventory" />
         </EntityType>
         <EntityType Name="Motherboard">
@@ -734,11 +802,12 @@
           <NavigationProperty Name="Cooler_CPU" Relationship="AccountingOfEquipmentModel.FK__PC__id_Cooler_CP__440B1D61" FromRole="PC" ToRole="Cooler_CPU" />
           <NavigationProperty Name="CPU" Relationship="AccountingOfEquipmentModel.FK__PC__id_CPU__44FF419A" FromRole="PC" ToRole="CPU" />
           <NavigationProperty Name="GPU" Relationship="AccountingOfEquipmentModel.FK__PC__id_GPU__48CFD27E" FromRole="PC" ToRole="GPU" />
+          <NavigationProperty Name="History" Relationship="AccountingOfEquipmentModel.FK__History__CreateA__17036CC0" FromRole="PC" ToRole="History" />
           <NavigationProperty Name="Motherboard" Relationship="AccountingOfEquipmentModel.FK__PC__id_Motherboa__46E78A0C" FromRole="PC" ToRole="Motherboard" />
           <NavigationProperty Name="Power_Supply" Relationship="AccountingOfEquipmentModel.FK__PC__id_Power_Sup__49C3F6B7" FromRole="PC" ToRole="Power_Supply" />
           <NavigationProperty Name="RAM" Relationship="AccountingOfEquipmentModel.FK__PC__id_RAM__47DBAE45" FromRole="PC" ToRole="RAM" />
           <NavigationProperty Name="Type_PC" Relationship="AccountingOfEquipmentModel.FK__PC__id_Type_PC__45F365D3" FromRole="PC" ToRole="Type_PC" />
-          <NavigationProperty Name="PC_Storage" Relationship="AccountingOfEquipmentModel.FK__PC_Storag__id_PC__4CA06362" FromRole="PC" ToRole="PC_Storage" />
+          <NavigationProperty Name="PC_Storage" Relationship="AccountingOfEquipmentModel.FK_PC_Storage_PC" FromRole="PC" ToRole="PC_Storage" />
         </EntityType>
         <EntityType Name="PC_Storage">
           <Key>
@@ -747,7 +816,7 @@
           <Property Name="id_PC_Storage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_PC" Type="Int32" Nullable="false" />
           <Property Name="id_Storage" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="PC" Relationship="AccountingOfEquipmentModel.FK__PC_Storag__id_PC__4CA06362" FromRole="PC_Storage" ToRole="PC" />
+          <NavigationProperty Name="PC" Relationship="AccountingOfEquipmentModel.FK_PC_Storage_PC" FromRole="PC_Storage" ToRole="PC" />
           <NavigationProperty Name="Storage" Relationship="AccountingOfEquipmentModel.FK__PC_Storag__id_St__4D94879B" FromRole="PC_Storage" ToRole="Storage" />
         </EntityType>
         <EntityType Name="Power_Supply">
@@ -791,6 +860,16 @@
           <NavigationProperty Name="PC_Storage" Relationship="AccountingOfEquipmentModel.FK__PC_Storag__id_St__4D94879B" FromRole="Storage" ToRole="PC_Storage" />
           <NavigationProperty Name="Type_Storage" Relationship="AccountingOfEquipmentModel.FK__Storage__Amount__2A4B4B5E" FromRole="Storage" ToRole="Type_Storage" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="Type_PC">
           <Key>
             <PropertyRef Name="id_Type_PC" />
@@ -822,6 +901,26 @@
           <Property Name="id_Type_Video_Memory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name_Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="GPU" Relationship="AccountingOfEquipmentModel.FK__GPU__id_Type_Vid__3B75D760" FromRole="Type_Video_Memory" ToRole="GPU" />
+        </EntityType>
+        <EntityType Name="TechnicalSpecifications">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="PCname" />
+            <PropertyRef Name="NameMotherboard" />
+            <PropertyRef Name="NameRAM" />
+            <PropertyRef Name="NameGPU" />
+            <PropertyRef Name="NamePower" />
+            <PropertyRef Name="NameCPU" />
+            <PropertyRef Name="NameCooler" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="PCname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameMotherboard" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameRAM" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameGPU" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NamePower" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameCPU" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameCooler" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK__Barcode_I__id_Ba__534D60F1">
           <End Type="AccountingOfEquipmentModel.Barcode" Role="Barcode" Multiplicity="1" />
@@ -933,6 +1032,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__History__CreateA__17036CC0">
+          <End Type="AccountingOfEquipmentModel.PC" Role="PC" Multiplicity="1" />
+          <End Type="AccountingOfEquipmentModel.History" Role="History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PC">
+              <PropertyRef Name="id_PC" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="PC_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Motherboa__id_So__34C8D9D1">
           <End Type="AccountingOfEquipmentModel.Socket" Role="Socket" Multiplicity="1" />
           <End Type="AccountingOfEquipmentModel.Motherboard" Role="Motherboard" Multiplicity="*" />
@@ -993,8 +1104,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PC_Storag__id_PC__4CA06362">
-          <End Type="AccountingOfEquipmentModel.PC" Role="PC" Multiplicity="1" />
+        <Association Name="FK_PC_Storage_PC">
+          <End Type="AccountingOfEquipmentModel.PC" Role="PC" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="AccountingOfEquipmentModel.PC_Storage" Role="PC_Storage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PC">
@@ -1071,17 +1184,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище AccountingOfEquipmentModel.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище AccountingOfEquipmentModel.sp_upgraddiagrams" />
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="AccountingOfEquipmentModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Barcode">
             <EntityTypeMapping TypeName="AccountingOfEquipmentModel.Barcode">
               <MappingFragment StoreEntitySet="Barcode">
@@ -1130,10 +1232,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="History">
+            <EntityTypeMapping TypeName="AccountingOfEquipmentModel.History">
+              <MappingFragment StoreEntitySet="History">
+                <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
+                <ScalarProperty Name="Operation" ColumnName="Operation" />
+                <ScalarProperty Name="PC_id" ColumnName="PC_id" />
+                <ScalarProperty Name="id_History" ColumnName="id_History" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Inventory">
             <EntityTypeMapping TypeName="AccountingOfEquipmentModel.Inventory">
               <MappingFragment StoreEntitySet="Inventory">
-                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
                 <ScalarProperty Name="id_Inventory" ColumnName="id_Inventory" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1209,6 +1321,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="AccountingOfEquipmentModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Type_PC">
             <EntityTypeMapping TypeName="AccountingOfEquipmentModel.Type_PC">
               <MappingFragment StoreEntitySet="Type_PC">
@@ -1238,6 +1361,20 @@
               <MappingFragment StoreEntitySet="Type_Video_Memory">
                 <ScalarProperty Name="Name_Type" ColumnName="Name_Type" />
                 <ScalarProperty Name="id_Type_Video_Memory" ColumnName="id_Type_Video_Memory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TechnicalSpecifications">
+            <EntityTypeMapping TypeName="AccountingOfEquipmentModel.TechnicalSpecifications">
+              <MappingFragment StoreEntitySet="TechnicalSpecifications">
+                <ScalarProperty Name="NameCooler" ColumnName="NameCooler" />
+                <ScalarProperty Name="NameCPU" ColumnName="NameCPU" />
+                <ScalarProperty Name="NamePower" ColumnName="NamePower" />
+                <ScalarProperty Name="NameGPU" ColumnName="NameGPU" />
+                <ScalarProperty Name="NameRAM" ColumnName="NameRAM" />
+                <ScalarProperty Name="NameMotherboard" ColumnName="NameMotherboard" />
+                <ScalarProperty Name="PCname" ColumnName="PCname" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

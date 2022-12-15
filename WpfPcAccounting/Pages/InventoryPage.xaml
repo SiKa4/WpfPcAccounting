@@ -1,0 +1,68 @@
+﻿<Page x:Class="WpfPcAccounting.Pages.InventoryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfPcAccounting.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="365" d:DesignWidth="760"
+      Title="InventoryPage" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" >
+    <Page.Resources >
+        <DataTemplate x:Key="Elements">
+            <Grid>
+                <StackPanel Height="60" Width="760" Orientation="Horizontal" Margin="0,5,0,0">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Height="60" Width="170">
+                        <TextBlock Text="Код:" FontSize="11" FontFamily="Bahnschrift Light" Margin="0,10,0,0" />
+                        <TextBlock FontSize="15" Text="{Binding Path=Barcode.Barcode_Value}"  />
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Height="60" Width="140">
+                        <TextBlock Text="Наименование:" FontSize="11" FontFamily="Bahnschrift Light"/>
+                        <TextBlock Text="{Binding Path=Barcode.PC.Serial_name}" />
+                        <TextBlock Text="Тип:" FontSize="11" FontFamily="Bahnschrift Light"/>
+                        <TextBlock Text="{Binding Path=Barcode.PC.Type_PC.Name_type}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Height="60" Width="255">
+                        <TextBlock Text="Видеокарта:" FontSize="11" FontFamily="Bahnschrift Light"/>
+                        <TextBlock Text="{Binding Path=Barcode.PC.GPU.Serial_name}"/>
+                        <TextBlock Text="Процессор:" FontSize="11" FontFamily="Bahnschrift Light"/>
+                        <TextBlock Text="{Binding Path=Barcode.PC.CPU.Serial_name}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Height="60" Width="200">
+                        <TextBlock Text="Кол-во:" FontSize="11" FontFamily="Bahnschrift Light" Margin="0,10,0,0" />
+                        <TextBlock FontSize="15" Text="{Binding Path=Count}"  />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Row="0" Grid.Column="1" StrokeThickness="1" Stroke="Black" Margin="0,0,0,0" />
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <ComboBox ItemsSource="{Binding Path=Barcode_Value}" DisplayMemberPath="Barcode_Value" SelectedValuePath="Barcode_Value" 
+                      Name="ComboFindKode" Height="30" Width="160" 
+                      FontFamily="Bahnschrift Light" FontSize="20" IsEditable="True" Margin="45,0,0,0" PreviewTextInput="ComboFindKode_PreviewTextInput"/>
+
+            <Button Height="30" Width="30" Margin="5,0,0,0" Name="BtnAddInventory" Click="BtnAddInventory_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Images/pngwing.com.png"/>
+                </Button.Background>
+            </Button>
+        </StackPanel>
+        <ListView Grid.Row="1" Grid.Column="0" x:Name="ListPC" ItemTemplate="{StaticResource Elements}" 
+                  Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"/>
+        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Height="30" Width="160" Content="Закончить инвентаризацию" FontFamily="Bahnschrift Light" 
+                    Name="BtnFinishInventory" Margin="10,0,0,0" Click="BtnFinishInventory_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

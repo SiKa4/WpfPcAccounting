@@ -24,6 +24,8 @@ namespace WpfPcAccounting
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        bool isInventory = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -52,7 +54,7 @@ namespace WpfPcAccounting
                     MainAutiFrame.NavigationService.Navigate(new ListAddedPC());
                     ComboFindKode.Text = string.Empty;
                 }
-                else MessageBox.Show("Компьютер не найден!", "Ошибка!!!", MessageBoxButton.OK, MessageBoxImage.Information);
+                else MessageBox.Show("Компьютер не найден!", "Ошибка!!!", MessageBoxButton.OK, MessageBoxImage.Information);       
             }
             else MessageBox.Show("Некорректный формат данных!", "Ошибка!!!", MessageBoxButton.OK, MessageBoxImage.Information);
         }
@@ -60,6 +62,21 @@ namespace WpfPcAccounting
         private void ComboFindKode_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             if (!Char.IsDigit(e.Text, 0)) e.Handled = true;
+        }
+
+        private void StartInventory_Click(object sender, RoutedEventArgs e)
+        {
+            if (isInventory)
+            {
+                StartInventory.Background = null;
+                MainAutiFrame.NavigationService.Navigate(new ListAddedPC());
+            }
+            else
+            {
+                StartInventory.Background = Brushes.LightGreen;
+                MainAutiFrame.NavigationService.Navigate(new InventoryPage(MainAutiFrame));
+            }
+            isInventory = !isInventory;
         }
     }
 }

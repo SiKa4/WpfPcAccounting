@@ -17,6 +17,7 @@ namespace WpfPcAccounting.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PC()
         {
+            this.History = new HashSet<History>();
             this.PC_Storage = new HashSet<PC_Storage>();
         }
     
@@ -35,6 +36,8 @@ namespace WpfPcAccounting.Model
         public virtual Cooler_CPU Cooler_CPU { get; set; }
         public virtual CPU CPU { get; set; }
         public virtual GPU GPU { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<History> History { get; set; }
         public virtual Motherboard Motherboard { get; set; }
         public virtual Power_Supply Power_Supply { get; set; }
         public virtual RAM RAM { get; set; }

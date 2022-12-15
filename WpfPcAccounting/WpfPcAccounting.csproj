@@ -81,6 +81,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\InventoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ListAddedPC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -140,6 +144,9 @@
     <Compile Include="Model\GPU.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\History.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Inventory.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -188,6 +195,9 @@
     <Compile Include="Model\sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\TechnicalSpecifications.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Type_PC.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -208,6 +218,9 @@
     </Compile>
     <Compile Include="Pages\GpuPage.xaml.cs">
       <DependentUpon>GpuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InventoryPage.xaml.cs">
+      <DependentUpon>InventoryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ListAddedPC.xaml.cs">
       <DependentUpon>ListAddedPC.xaml</DependentUpon>
@@ -286,6 +299,7 @@
   <ItemGroup>
     <Resource Include="Images\free-icon-add-button-7170180.png" />
     <Resource Include="Images\video-card.png" />
+    <Resource Include="Images\pngwing.com.png" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

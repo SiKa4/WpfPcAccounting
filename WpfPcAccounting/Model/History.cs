@@ -12,18 +12,13 @@ namespace WpfPcAccounting.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Inventory
+    public partial class History
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Inventory()
-        {
-            this.Barcode_Inventory = new HashSet<Barcode_Inventory>();
-        }
-    
-        public int id_Inventory { get; set; }
+        public int id_History { get; set; }
+        public int PC_id { get; set; }
+        public string Operation { get; set; }
         public System.DateTime CreateAt { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Barcode_Inventory> Barcode_Inventory { get; set; }
+        public virtual PC PC { get; set; }
     }
 }

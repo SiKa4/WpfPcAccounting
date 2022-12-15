@@ -26,7 +26,7 @@
 
         <Rectangle Grid.Row="0" Grid.Column="1" StrokeThickness="1" Stroke="Black" Margin="0,5,0,0" />
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="0,5,0,0" >
-            <Button Height="30" Width="142" Margin="32,0,0,0" Content="Начать инвентаризацию" FontFamily="Bahnschrift Light" />
+            <Button Height="30" Width="142" Margin="32,0,0,0" Content="Начать инвентаризацию" FontFamily="Bahnschrift Light" Name="StartInventory" Click="StartInventory_Click"/>
             <ComboBox ItemsSource="{Binding Path=Barcode_Value}" DisplayMemberPath="Barcode_Value" SelectedValuePath="Barcode_Value" 
                       Name="ComboFindKode" Height="30" Width="160" 
                       Margin="130,0,0,0" FontFamily="Bahnschrift Light" FontSize="20" IsEditable="True" PreviewTextInput="ComboFindKode_PreviewTextInput"/>

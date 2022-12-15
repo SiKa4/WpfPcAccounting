@@ -27,12 +27,12 @@ namespace WpfPcAccounting.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Barcode> Barcode { get; set; }
         public virtual DbSet<Barcode_Inventory> Barcode_Inventory { get; set; }
         public virtual DbSet<Cooler_CPU> Cooler_CPU { get; set; }
         public virtual DbSet<CPU> CPU { get; set; }
         public virtual DbSet<GPU> GPU { get; set; }
+        public virtual DbSet<History> History { get; set; }
         public virtual DbSet<Inventory> Inventory { get; set; }
         public virtual DbSet<Motherboard> Motherboard { get; set; }
         public virtual DbSet<PC> PC { get; set; }
@@ -41,10 +41,12 @@ namespace WpfPcAccounting.Model
         public virtual DbSet<RAM> RAM { get; set; }
         public virtual DbSet<Socket> Socket { get; set; }
         public virtual DbSet<Storage> Storage { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Type_PC> Type_PC { get; set; }
         public virtual DbSet<Type_RAM> Type_RAM { get; set; }
         public virtual DbSet<Type_Storage> Type_Storage { get; set; }
         public virtual DbSet<Type_Video_Memory> Type_Video_Memory { get; set; }
+        public virtual DbSet<TechnicalSpecifications> TechnicalSpecifications { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
