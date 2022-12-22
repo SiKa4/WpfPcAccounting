@@ -36,6 +36,8 @@ namespace WpfPcAccounting.Pages
             ComboFindKode.ItemsSource = DBConnection.DB.Barcode.ToList();
             DBConnection.DB.Inventory.Add(inventory);
             DBConnection.DB.SaveChanges();
+            MainWindow.BtnAddNewPC.IsEnabled = false;
+            MainWindow.StartInventory.IsEnabled = false;
         }
 
         private void ComboFindKode_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -80,7 +82,11 @@ namespace WpfPcAccounting.Pages
         {
             if (MessageBox.Show("Вы уверены?", "Закрыть старницу", MessageBoxButton.YesNo, MessageBoxImage.Question) 
                 == MessageBoxResult.Yes)
-            MainWindow.StartInventory_Click(sender, e);
+            {
+                MainWindow.BtnAddNewPC.IsEnabled = true;
+                MainWindow.StartInventory.IsEnabled = true;
+                MainWindow.StartInventory_Click(sender, e);
+            }
         }
     }
 }
