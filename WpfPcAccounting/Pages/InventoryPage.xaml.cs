@@ -31,7 +31,7 @@ namespace WpfPcAccounting.Pages
             this.MainWindow = MainWindow;
             inventory = new Inventory()
             {
-                CreateAt = DateTime.Now
+                Date = DateTime.Now
             };
             ComboFindKode.ItemsSource = DBConnection.DB.Barcode.ToList();
             DBConnection.DB.Inventory.Add(inventory);

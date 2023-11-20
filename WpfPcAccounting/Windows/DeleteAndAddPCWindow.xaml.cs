@@ -1,8 +1,14 @@
 ﻿using Microsoft.SqlServer.Server;
+using QRCoder;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Timers;
 using System.Windows;
@@ -55,10 +61,36 @@ namespace WpfPcAccounting.Windows
             CheckSave();
         }
 
+        private BitmapImage GenerateQrCodeBitmapImage(string text)
+        {
+            byte[] imageBytes = Convert.FromBase64String(text);
+
+            using (MemoryStream memoryStream = new MemoryStream(imageBytes))
+            {
+                using (Bitmap bitmap = new Bitmap(memoryStream))
+                {
+                    bitmap.Save(memoryStream, ImageFormat.Png);
+                    memoryStream.Position = 0;
+
+                    // Создаем новый BitmapImage и загружаем из потока
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmapImage.StreamSource = memoryStream;
+                    bitmapImage.EndInit();
+
+                    return bitmapImage;
+                }
+            }
+        }
+
         public void onFill()
         {
             if(fill)
             {
+                var barcodeData = DBConnection.DB.Barcode.Where(x => x.id_Barcode == pc.id_PC).FirstOrDefault().Barcode_Datas;
+                ImageQrCode.Source = GenerateQrCodeBitmapImage(barcodeData);
+
                 ComboBoxSocket.ItemsSource = DBConnection.DB.Socket.ToList();
                 ComboBoxSocket.SelectedItem = pc.CPU.Socket;
                 txtKode.Text = pc.Barcode.Barcode_Value.ToString();
@@ -194,13 +226,35 @@ namespace WpfPcAccounting.Windows
             }
         }
 
+        private byte[] ConvertBitmapToByteArray(Bitmap bitmap)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                bitmap.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                return stream.ToArray();
+            }
+        }
+
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             if(CheckSave() && fill == false)
             {
+                string data = $"{txtKode.Text}";
+
+                QRCodeGenerator qrGenerator = new QRCodeGenerator();
+                QRCodeData qrCodeData = qrGenerator.CreateQrCode(data, QRCodeGenerator.ECCLevel.Q);
+                QRCode qrCode = new QRCode(qrCodeData);
+
+                Bitmap qrCodeBitmap = qrCode.GetGraphic(20);
+
+                qrCodeBitmap.Save("234.jpeg", ImageFormat.Jpeg);
+
+                var qrCodeBytes = Convert.ToBase64String(ConvertBitmapToByteArray(qrCodeBitmap));
+
                 Barcode barcode = new Barcode()
                 {
-                     Barcode_Value = Convert.ToInt64(txtKode.Text)
+                    Barcode_Value = Convert.ToInt64(txtKode.Text),
+                    Barcode_Datas = qrCodeBytes
                 };
 
                 PC newPC = new PC()

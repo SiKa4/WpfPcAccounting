@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfPcAccounting.Windows"
         mc:Ignorable="d"
-        Title="Добавить/Изменить ПК" Height="400" Width="700" Icon="/Images/free-icon-add-button-7170180.png" ResizeMode="CanMinimize">
+        Title="Добавить/Изменить ПК" Height="400" Width="900" Icon="/Images/free-icon-add-button-7170180.png" ResizeMode="CanMinimize">
     <Window.Background>
         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}"/>
     </Window.Background>
@@ -15,10 +15,12 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="0.9*"/>
             <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition />
+            <RowDefinition /> 
             <RowDefinition Height="2.3*"/>
             <RowDefinition Height="3.3*"/>
             <RowDefinition Height="2.3*"/>
@@ -89,7 +91,7 @@
             <TextBlock Text="накопители:" FontSize="12" Margin="5,0,0,0" />
         </StackPanel>
 
-        <StackPanel Grid.Row="3" Grid.Column="4">
+        <StackPanel Grid.Row="3" Grid.Column="3">
             <StackPanel Orientation="Horizontal">
                 <ComboBox ItemsSource="{Binding Path=Serial_name}" DisplayMemberPath="Serial_name" SelectedValuePath="Serial_name" 
                       Name="ComboBoxStorage" Width="180"
@@ -138,7 +140,7 @@
                       FontFamily="Bahnschrift Light" FontSize="12" Height="24" IsEditable="True" HorizontalAlignment="Left" Margin="0,30,0,0" />
         </StackPanel>
 
-        <StackPanel Grid.Row="0" Grid.Column="3">
+        <StackPanel Grid.Row="0" Grid.Column="3" HorizontalAlignment="Left">
             <Button Height="20" Width="100" Content="Сохранить" Margin="0,10,0,0" IsEnabled="False" Name="BtnSave" Click="BtnSave_Click">
                 <Button.Background>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionColorKey}}"/>
@@ -146,7 +148,7 @@
             </Button>
         </StackPanel>
 
-        <StackPanel Grid.Row="4" Grid.Column="3" Margin="5,5,5,5">
+        <StackPanel Grid.Row="4" Grid.Column="3" HorizontalAlignment="Left">
             <TextBlock Text="Не нашли комплектующие, которые"/>
             <TextBlock Text="находятся в вашем ПК? Добавьте их!"/>
             <Button Height="20" Width="100" Content="Добавить" Margin="0,5,0,0" Name="BtnAddParts" Click="BtnAddParts_Click" >
@@ -155,5 +157,9 @@
                 </Button.Background>
             </Button>
         </StackPanel>
+
+        <Border Grid.Column="4" Grid.RowSpan="5" BorderBrush="Black" BorderThickness="1,0,0,0" Margin="5,0,5,0"/>
+
+        <Image Grid.Column="5" Grid.RowSpan="5" x:Name="ImageQrCode" Width="100" Height="100"/>
     </Grid>
 </Window>

@@ -9,6 +9,6 @@ namespace WpfPcAccounting.Code
 {
     static class DBConnection
     {
-        public static AccountingOfEquipmentDB DB = new AccountingOfEquipmentDB();
+        public static AccountingOfEquipmentEntities DB = new AccountingOfEquipmentEntities();
     }
 }

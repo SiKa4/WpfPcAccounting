@@ -45,9 +45,13 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="QRCoder, Version=1.4.3.0, Culture=neutral, PublicKeyToken=c4ed5b9ae8358a28, processorArchitecture=MSIL">
+      <HintPath>..\packages\QRCoder.1.4.3\lib\net40\QRCoder.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
@@ -129,86 +133,80 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\AccountingOfEquipmentDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountingOfEquipmentDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AccountingOfEquipmentDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountingOfEquipmentDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AccountingOfEquipmentDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountingOfEquipmentDB.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Model\Barcode.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AccountingOfEquipmentDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Barcode_Inventory.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AccountingOfEquipmentDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Cooler_CPU.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AccountingOfEquipmentDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\CPU.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AccountingOfEquipmentDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\GPU.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\History.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AccountingOfEquipmentDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Inventory.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>AccountingOfEquipmentDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Motherboard.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AccountingOfEquipmentDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PC.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AccountingOfEquipmentDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PC_Storage.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AccountingOfEquipmentDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Power_Supply.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AccountingOfEquipmentDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\RAM.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AccountingOfEquipmentDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Socket.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AccountingOfEquipmentDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AccountingOfEquipmentDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\sp_helpdiagrams_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AccountingOfEquipmentDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Storage.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AccountingOfEquipmentDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\TechnicalSpecifications.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AccountingOfEquipmentDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Type_PC.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AccountingOfEquipmentDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Type_RAM.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AccountingOfEquipmentDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Type_Storage.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AccountingOfEquipmentDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Type_Video_Memory.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>AccountingOfEquipmentDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Pages\CoolerPage.xaml.cs">
       <DependentUpon>CoolerPage.xaml</DependentUpon>
@@ -272,12 +270,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\Model1.edmx">
+    <EntityDeploy Include="Model\AccountingOfEquipmentDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>AccountingOfEquipmentDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <None Include="Model\AccountingOfEquipmentDB.edmx.diagram">
+      <DependentUpon>AccountingOfEquipmentDB.edmx</DependentUpon>
     </None>
     <None Include="Model\packages.config" />
     <None Include="packages.config" />
@@ -300,15 +298,17 @@
     <Resource Include="Images\free-icon-add-button-7170180.png" />
     <Resource Include="Images\video-card.png" />
     <Resource Include="Images\pngwing.com.png" />
-    <Content Include="Model\Model1.Context.tt">
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\AccountingOfEquipmentDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <DependentUpon>AccountingOfEquipmentDB.edmx</DependentUpon>
+      <LastGenOutput>AccountingOfEquipmentDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\Model1.tt">
+    <Content Include="Model\AccountingOfEquipmentDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>AccountingOfEquipmentDB.edmx</DependentUpon>
+      <LastGenOutput>AccountingOfEquipmentDB.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
